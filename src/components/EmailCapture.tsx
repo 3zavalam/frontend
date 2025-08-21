@@ -56,9 +56,10 @@ const EmailCapture = () => {
       <Button
         type="submit"
         size="lg"
-        className="h-12 px-8 text-base font-semibold bg-primary hover:bg-primary/90 text-primary-foreground"
+        disabled={isLoading}
+        className="h-12 px-8 text-base font-semibold bg-primary hover:bg-primary/90 text-primary-foreground disabled:opacity-50"
       >
-        Get Started
+        {isLoading ? "Adding..." : "Get Started"}
       </Button>
     </form>
   );
