@@ -52,6 +52,14 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				'tennis-green': {
+					DEFAULT: 'hsl(var(--tennis-green))',
+					light: 'hsl(var(--tennis-green-light))',
+				},
+				overlay: {
+					DEFAULT: 'hsl(var(--overlay))',
+					foreground: 'hsl(var(--overlay-foreground))',
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
