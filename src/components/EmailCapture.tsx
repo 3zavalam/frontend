@@ -2,18 +2,44 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const EmailCapture = () => {
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    if (!email) return;
+
+    setIsLoading(true);
+    
+    try {
+      const { error } = await supabase
+        .from("waitlist")
+        .insert([{ email }]);
+
+      if (error) {
+        toast({
+          title: "Error",
+          description: "Something went wrong. Please try again.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Success!",
+          description: "Thanks for joining! We'll be in touch soon.",
+        });
+        setEmail("");
+      }
+    } catch (error) {
       toast({
-        title: "Success!",
-        description: "Thanks for joining! We'll be in touch soon.",
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
       });
-      setEmail("");
+    } finally {
+      setIsLoading(false);
     }
   };
 
