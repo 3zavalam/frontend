@@ -19,13 +19,13 @@ const Index = () => {
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-20">
         <div className="max-w-4xl mx-auto text-center">
           {/* Logo */}
-          <div className="mb-8">
+          <div className="mb-8 flex items-center justify-center gap-3">
             <img 
               src={logo} 
               alt="Winner Way Logo" 
-              className="w-16 h-16 mx-auto mb-4"
+              className="h-20 w-auto"
             />
-            <h2 className="text-white text-2xl font-bold">Winner Way</h2>
+            <h2 className="text-white text-7xl font-bold">Winner Way</h2>
           </div>
           
           {/* Main Headline */}
