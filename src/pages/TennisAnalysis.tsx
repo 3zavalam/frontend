@@ -262,8 +262,8 @@ const TennisAnalysis: React.FC = () => {
       // Store video info for analysis
       sessionStorage.setItem(`video_${result.video_id}`, JSON.stringify(result));
       
-      // Redirect to analysis page with video_id
-      navigate(`/analysis?video_id=${result.video_id}`);
+      // Redirect to results page with video_id
+      navigate(`/results?video_id=${result.video_id}`);
       
     } catch (err) {
       setError('Network error. Please check your connection and try again.');

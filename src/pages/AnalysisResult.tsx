@@ -187,7 +187,7 @@ const AnalysisResult: React.FC = () => {
             <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
             <h2 className="text-xl font-semibold mb-2">Invalid Request</h2>
             <p className="text-gray-600 mb-4">No video ID provided for analysis.</p>
-            <Button onClick={() => navigate('/tennis-analysis')}>
+            <Button onClick={() => navigate('/analysis')}>
               Upload New Video
             </Button>
           </CardContent>
@@ -212,7 +212,7 @@ const AnalysisResult: React.FC = () => {
           <a href="/" className="text-[#0A2342] hover:text-[#0A3A7A] font-medium transition-colors">
             Home
           </a>
-          <a href="/tennis-analysis" className="text-[#0A2342] hover:text-[#0A3A7A] font-medium transition-colors">
+          <a href="/analysis" className="text-[#0A2342] hover:text-[#0A3A7A] font-medium transition-colors">
             New Analysis
           </a>
         </nav>
@@ -252,7 +252,7 @@ const AnalysisResult: React.FC = () => {
                   </Button>
                   <Button 
                     variant="outline" 
-                    onClick={() => navigate('/tennis-analysis')}
+                    onClick={() => navigate('/analysis')}
                     className="w-full"
                   >
                     Upload New Video
@@ -447,7 +447,7 @@ const AnalysisResult: React.FC = () => {
               )}
               
               <Button 
-                onClick={() => navigate('/tennis-analysis')}
+                onClick={() => navigate('/analysis')}
                 size="lg"
                 className="bg-blue-600 hover:bg-blue-700"
               >

@@ -13,8 +13,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/waitlist" element={<Waitlist />} />
-        <Route path="/upload" element={<TennisAnalysis />} />
-        <Route path="/analysis" element={<AnalysisResult />} />
+        <Route path="/analysis" element={<TennisAnalysis />} />
+        <Route path="/results" element={<AnalysisResult />} />
         <Route path="/drills" element={<DrillPlayground />} />
         <Route path="/contact" element={<ContactUs />} />
 
