@@ -7,6 +7,7 @@ import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import StripePayment from '@/components/StripePayment';
 import {
   Dialog,
   DialogContent,
@@ -208,7 +209,7 @@ const TennisAnalysis: React.FC = () => {
       formData.append('email', email);
       formData.append('name', email.split('@')[0]); // Use email prefix as name
       formData.append('gender', gender === 'men' ? 'male' : 'female');
-      formData.append('dominant_hand', handedness === 'righty' ? 'right' : 'left');
+      formData.append('dominant_hand', handedness); // Send exactly 'righty' or 'lefty'
       formData.append('experience_level', experienceLevel);
       
       // Handle shot type with backhand variants
@@ -225,6 +226,7 @@ const TennisAnalysis: React.FC = () => {
       } else {
         formData.append('shot_type', shotType);
       }
+
 
       const response = await fetch(getApiUrl(API_CONFIG.ENDPOINTS.UPLOAD_VIDEO), {
         method: 'POST',
@@ -642,20 +644,22 @@ const TennisAnalysis: React.FC = () => {
       {/* Unlimited Analysis CTA */}
       <div className="max-w-4xl mx-auto px-4 md:px-6 pb-8">
         <Card className="bg-gradient-to-r from-yellow-50 to-orange-50 border-yellow-200 shadow-lg">
-          <CardContent className="p-6 md:p-8 text-center">
-            <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-3">
-              Want unlimited analysis?
-            </h3>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              Get unlimited AI tennis analysis, detailed feedback, and personalized training recommendations.
-            </p>
-            <Button 
-              onClick={() => window.open('https://buy.stripe.com/bJebJ27CR6Oc2VV3kSbMQ06', '_blank')}
-              size="lg"
-              className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200"
-            >
-              Get Unlimited Analysis →
-            </Button>
+          <CardContent className="p-6 md:p-8">
+            <div className="text-center mb-6">
+              <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-3">
+                Want unlimited analysis?
+              </h3>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Get unlimited AI tennis analysis, detailed feedback, and personalized training recommendations.
+              </p>
+            </div>
+            <div className="max-w-md mx-auto">
+              <StripePayment 
+                amount={4900}
+                productName="Tennis Analysis Pro"
+                buttonText="Get Unlimited Analysis - $49"
+              />
+            </div>
           </CardContent>
         </Card>
       </div>
@@ -682,21 +686,19 @@ const TennisAnalysis: React.FC = () => {
                 <li>• Progress tracking over time</li>
               </ul>
             </div>
-            <div className="flex gap-3">
-              <Button 
-                onClick={() => setShowUpgradeModal(false)} 
-                variant="outline" 
-                className="flex-1 border-gray-300 text-gray-600 hover:bg-gray-50"
-              >
-                Maybe Later
-              </Button>
-              <Button 
-                onClick={() => window.open('https://buy.stripe.com/bJebJ27CR6Oc2VV3kSbMQ06', '_blank')}
-                className="flex-1 bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white font-semibold"
-              >
-                Get Unlimited Access
-              </Button>
-            </div>
+            <StripePayment 
+              amount={4900}
+              productName="Tennis Analysis Pro"
+              buttonText="Get Unlimited Access - $49"
+              className="mb-4"
+            />
+            <Button 
+              onClick={() => setShowUpgradeModal(false)} 
+              variant="outline" 
+              className="w-full border-gray-300 text-gray-600 hover:bg-gray-50"
+            >
+              Maybe Later
+            </Button>
           </div>
         </DialogContent>
       </Dialog>

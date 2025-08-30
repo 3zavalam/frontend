@@ -7,6 +7,7 @@ import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import StripePayment from '@/components/StripePayment';
 import {
   Trophy,
   Target,
@@ -431,6 +432,26 @@ const AnalysisResult: React.FC = () => {
               </Card>
             )}
 
+            {/* Unlimited Analysis CTA */}
+            <Card className="bg-gradient-to-r from-yellow-50 to-orange-50 border-yellow-200 shadow-lg">
+              <CardContent className="p-6 md:p-8">
+                <div className="text-center mb-6">
+                  <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-3">
+                    Want unlimited analysis?
+                  </h3>
+                  <p className="text-gray-600 max-w-2xl mx-auto">
+                    Get unlimited AI tennis analysis, detailed feedback, and personalized training recommendations.
+                  </p>
+                </div>
+                <div className="max-w-md mx-auto">
+                  <StripePayment 
+                    amount={4900}
+                    productName="Tennis Analysis Pro"
+                    buttonText="Get Unlimited Analysis - $49"
+                  />
+                </div>
+              </CardContent>
+            </Card>
 
             {/* Actions */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
