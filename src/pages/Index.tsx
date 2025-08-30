@@ -8,7 +8,7 @@ const Index = () => {
   const navigate = useNavigate();
 
   const handleTryItNow = () => {
-    navigate('/upload');
+    navigate('/analysis');
   };
 
   return (
