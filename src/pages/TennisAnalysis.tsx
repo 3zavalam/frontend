@@ -264,7 +264,7 @@ const TennisAnalysis: React.FC = () => {
       // Store video info for analysis
       sessionStorage.setItem(`video_${result.video_id}`, JSON.stringify(result));
       
-      // Redirect to results page with video_id
+      // Redirect to analysis results page with video_id
       navigate(`/results?video_id=${result.video_id}`);
       
     } catch (err) {

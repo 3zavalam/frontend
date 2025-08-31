@@ -125,8 +125,8 @@ const AnalysisResult: React.FC = () => {
       const authToken = sessionStorage.getItem('auth_token');
       
       // First try to analyze the video
-      const analyzeResponse = await fetch(getApiUrl(`/api/videos/analyze`), {
-        method: 'POST',
+      const analyzeResponse = await fetch(getApiUrl(`/api/videos/analyze/${videoId}`), {
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${authToken}`,
