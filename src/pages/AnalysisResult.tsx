@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { API_CONFIG, getApiUrl } from '@/config/api';
+import { API_CONFIG, getApiUrl, apiCall } from '@/config/api';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -92,6 +92,16 @@ const AnalysisResult: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [progress, setProgress] = useState(0);
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+
+  const fetchVideoUrl = async (videoId: string) => {
+    try {
+      const response = await apiCall(`/api/videos/${videoId}`) as { s3_url: string };
+      setVideoUrl(response.s3_url);
+    } catch (err) {
+      console.error('Failed to fetch video URL:', err);
+    }
+  };
 
   useEffect(() => {
     if (!videoId) {
@@ -99,6 +109,9 @@ const AnalysisResult: React.FC = () => {
       setIsLoading(false);
       return;
     }
+
+    // Fetch video URL
+    fetchVideoUrl(videoId);
 
     // Check if we already have analysis results
     const existingAnalysis = sessionStorage.getItem(`analysis_${videoId}`);
@@ -130,8 +143,7 @@ const AnalysisResult: React.FC = () => {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${authToken}`,
-        },
-        body: JSON.stringify({ video_id: videoId })
+        }
       });
 
       setProgress(50);
@@ -339,7 +351,7 @@ const AnalysisResult: React.FC = () => {
                         <video 
                           controls 
                           className="w-full h-full object-contain"
-                          src={`${getApiUrl('')}/${analysisData.analysis.user_shot.file}`}
+                          src={videoUrl}
                         >
                           Your browser does not support the video tag.
                         </video>
@@ -377,7 +389,7 @@ const AnalysisResult: React.FC = () => {
                     </div>
 
                     {/* Key Observations */}
-                    {analysisData.analysis.ai_analysis.ai_analysis.key_observations.length > 0 && 
+                    {analysisData.analysis.ai_analysis.ai_analysis.key_observations?.length > 0 && 
                      !analysisData.analysis.ai_analysis.ai_analysis.key_observations.some(obs => 
                        obs.includes('temporarily unavailable') || obs.includes('try again later')) && (
                       <div>
@@ -396,7 +408,7 @@ const AnalysisResult: React.FC = () => {
                     )}
 
                     {/* Specific Recommendations */}
-                    {analysisData.analysis.ai_analysis.ai_analysis.specific_recommendations.length > 0 && 
+                    {analysisData.analysis.ai_analysis.ai_analysis.specific_recommendations?.length > 0 && 
                      !analysisData.analysis.ai_analysis.ai_analysis.specific_recommendations.some(rec => 
                        rec.includes('try again later') || rec.includes('temporarily unavailable')) && (
                       <div>
@@ -413,7 +425,7 @@ const AnalysisResult: React.FC = () => {
                     )}
 
                     {/* Focus Areas */}
-                    {analysisData.analysis.ai_analysis.ai_analysis.focus_areas.length > 0 && 
+                    {analysisData.analysis.ai_analysis.ai_analysis.focus_areas?.length > 0 && 
                      !analysisData.analysis.ai_analysis.ai_analysis.focus_areas.some(area => 
                        area.includes('pending') || area.includes('temporarily unavailable')) && (
                       <div>
@@ -456,7 +468,7 @@ const AnalysisResult: React.FC = () => {
             {/* Actions */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               {/* Start Training Button - Only show if there are drills */}
-              {analysisData.analysis.personalized_drills && analysisData.analysis.personalized_drills.length > 0 && (
+              {analysisData.analysis.personalized_drills?.length > 0 && (
                 <Button 
                   onClick={() => navigate(`/drills?video_id=${videoId}`)}
                   size="lg"

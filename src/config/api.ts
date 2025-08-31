@@ -4,6 +4,7 @@ export const API_CONFIG = {
   ENDPOINTS: {
     UPLOAD_VIDEO: '/api/videos/upload',
     ANALYZE_VIDEO: '/api/videos/analyze',
+      GET_VIDEO: '/api/videos',
   }
 };
 
@@ -12,8 +13,7 @@ export const getApiUrl = (endpoint: string): string => {
 };
 
 // Helper function for API calls with error handling
-/*
-export const apiCall = async (endpoint: string, options: RequestInit = {}): Promise<any> => {
+export const apiCall = async (endpoint: string, options: RequestInit = {}): Promise<unknown> => {
   try {
     const response = await fetch(getApiUrl(endpoint), {
       ...options,
@@ -32,4 +32,3 @@ export const apiCall = async (endpoint: string, options: RequestInit = {}): Prom
     throw error;
   }
 };
-*/
