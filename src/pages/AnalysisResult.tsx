@@ -8,6 +8,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import StripePayment from '@/components/StripePayment';
+import logoImage from '@/assets/winner-way-logo-usopen.png';
 import {
   Trophy,
   Target,
@@ -215,7 +216,7 @@ const AnalysisResult: React.FC = () => {
       <header className="bg-white flex justify-between items-center px-4 md:px-6 py-4 shadow-sm">
         <div className="flex items-center gap-2">
           <img 
-            src="/src/assets/winner-way-logo-usopen.png" 
+            src={logoImage} 
             alt="WinnerWay Logo" 
             className="w-6 h-6 md:w-8 md:h-8 object-contain"
           />

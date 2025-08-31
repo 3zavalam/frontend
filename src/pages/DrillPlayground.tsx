@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
+import logoImage from '@/assets/winner-way-logo-usopen.png';
 import {
   ChevronRight,
   ChevronLeft,
@@ -145,7 +146,7 @@ const DrillPlayground: React.FC = () => {
       <header className="bg-white flex justify-between items-center px-4 md:px-6 py-4 shadow-sm">
         <div className="flex items-center gap-2">
           <img 
-            src="/src/assets/winner-way-logo-usopen.png" 
+            src={logoImage} 
             alt="WinnerWay Logo" 
             className="w-6 h-6 md:w-8 md:h-8 object-contain"
           />

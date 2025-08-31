@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { CheckCircle, Trophy, Zap, Target } from 'lucide-react';
+import logoImage from '@/assets/winner-way-logo-usopen.png';
 
 const Success: React.FC = () => {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const Success: React.FC = () => {
       <header className="bg-white flex justify-between items-center px-4 md:px-6 py-4 shadow-sm">
         <div className="flex items-center gap-2">
           <img 
-            src="/src/assets/winner-way-logo-usopen.png" 
+            src={logoImage} 
             alt="WinnerWay Logo" 
             className="w-6 h-6 md:w-8 md:h-8 object-contain"
           />

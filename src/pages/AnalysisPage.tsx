@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import logoImage from '@/assets/winner-way-logo-usopen.png';
 
 interface Shot {
   shot_id: number;
@@ -108,7 +109,7 @@ export default function AnalysisPage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <img 
-                src="/src/assets/winner-way-logo-usopen.png" 
+                src={logoImage} 
                 alt="Winner Way" 
                 className="h-8 w-auto"
               />
