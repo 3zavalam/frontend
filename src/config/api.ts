@@ -3,6 +3,7 @@ export const API_CONFIG = {
   BASE_URL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:5050',
   ENDPOINTS: {
     UPLOAD_VIDEO: '/api/videos/upload',
+    ANALYZE_VIDEO: '/api/videos/analyze',
   }
 };
 
@@ -11,6 +12,7 @@ export const getApiUrl = (endpoint: string): string => {
 };
 
 // Helper function for API calls with error handling
+/*
 export const apiCall = async (endpoint: string, options: RequestInit = {}): Promise<any> => {
   try {
     const response = await fetch(getApiUrl(endpoint), {
@@ -30,3 +32,4 @@ export const apiCall = async (endpoint: string, options: RequestInit = {}): Prom
     throw error;
   }
 };
+*/
