@@ -7,6 +7,7 @@ import AnalysisPage from "./pages/AnalysisPage";
 import AnalysisResult from "./pages/AnalysisResult";
 import DrillPlayground from "./pages/DrillPlayground";
 import Success from "./pages/Success";
+import HighDemand from "./pages/HighDemand";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/drills" element={<DrillPlayground />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/success" element={<Success />} />
+        <Route path="/high-demand" element={<HighDemand />} />
 
         {/* cualquier ruta desconocida manda a home */}
         <Route path="*" element={<Navigate to="/" replace />} />
