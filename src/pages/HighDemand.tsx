@@ -287,7 +287,7 @@ const HighDemand: React.FC = () => {
         >
           <DialogHeader>
             <DialogTitle className="text-center text-2xl font-bold text-gray-800 mb-4">
-              <span className="text-[#0A3A7A]">WinnerWay is in High Demand</span> 🎾
+              <span className="text-[#0A3A7A]">WinnerWay is in High Demand</span>
             </DialogTitle>
           </DialogHeader>
           
@@ -324,7 +324,7 @@ const HighDemand: React.FC = () => {
               </div>
               
               <h3 className="text-xl font-bold text-gray-800">
-                You're on the list ✅
+                You're on the list
               </h3>
               
               <p className="text-gray-700">
