@@ -36,11 +36,19 @@ const HighDemand: React.FC = () => {
         .insert([{ email }]);
 
       if (error) {
-        toast({
-          title: "Error",
-          description: "Something went wrong. Please try again.",
-          variant: "destructive",
-        });
+        if (error.code === '23505' || error.message.includes('duplicate') || error.message.includes('already exists')) {
+          toast({
+            title: "Already registered!",
+            description: "This email is already on our waitlist.",
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "Error",
+            description: "Something went wrong. Please try again.",
+            variant: "destructive",
+          });
+        }
       } else {
         setSubmitted(true);
         setEmail("");
@@ -270,8 +278,13 @@ const HighDemand: React.FC = () => {
       </div>
 
       {/* High Demand Modal */}
-      <Dialog open={showModal} onOpenChange={setShowModal}>
-        <DialogContent className="bg-white/95 backdrop-blur-sm border-white/20 shadow-2xl max-w-md">
+      <Dialog open={showModal} modal>
+        <DialogContent 
+          className="bg-white/95 backdrop-blur-sm border-white/20 shadow-2xl max-w-md" 
+          hideCloseButton
+          onPointerDownOutside={(e) => e.preventDefault()}
+          onEscapeKeyDown={(e) => e.preventDefault()}
+        >
           <DialogHeader>
             <DialogTitle className="text-center text-2xl font-bold text-gray-800 mb-4">
               <span className="text-[#0A3A7A]">WinnerWay is in High Demand</span> 🎾

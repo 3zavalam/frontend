@@ -20,11 +20,19 @@ const EmailCapture = () => {
         .insert([{ email }]);
 
       if (error) {
-        toast({
-          title: "Error",
-          description: "Something went wrong. Please try again.",
-          variant: "destructive",
-        });
+        if (error.code === '23505' || error.message.includes('duplicate') || error.message.includes('already exists')) {
+          toast({
+            title: "Already registered!",
+            description: "This email is already on our waitlist.",
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "Error",
+            description: "Something went wrong. Please try again.",
+            variant: "destructive",
+          });
+        }
       } else {
         toast({
           title: "Success!",
